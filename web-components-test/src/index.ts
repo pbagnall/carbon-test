@@ -3,19 +3,25 @@ import '@carbon/web-components/es/components/button/button.js';
 import "@carbon/web-components/es/components/ui-shell/index";
 import "@carbon/web-components/es/components/icon/index.js";
 
-// Import the icon data from @carbon/icons
+// Import and register icons globally
 import Search16 from "@carbon/icons/es/search/16.js";
 import Notification16 from "@carbon/icons/es/notification/16.js";
 import Switcher16 from "@carbon/icons/es/switcher/16.js";
 
-// Wait for the components to be defined
-customElements.whenDefined('cds-icon').then(() => {
-  // Set icons on the cds-icon elements
-  const searchIcon = document.querySelector('cds-header-global-action[aria-label="Search"] cds-icon');
-  const notificationIcon = document.querySelector('cds-header-global-action[aria-label="Notifications"] cds-icon');
-  const switcherIcon = document.querySelector('cds-header-global-action[aria-label="App Switcher"] cds-icon');
+// Make icons available globally for declarative use
+(window as any).carbonIcons = {
+  search: Search16,
+  notification: Notification16,
+  switcher: Switcher16,
+};
 
-  if (searchIcon) (searchIcon as any).icon = Search16;
-  if (notificationIcon) (notificationIcon as any).icon = Notification16;
-  if (switcherIcon) (switcherIcon as any).icon = Switcher16;
+// Set up icons declaratively after DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+  const icons = document.querySelectorAll('cds-icon[icon]');
+  icons.forEach((iconElement: Element) => {
+    const iconName = iconElement.getAttribute('icon');
+    if (iconName && (window as any).carbonIcons[iconName]) {
+      (iconElement as any).icon = (window as any).carbonIcons[iconName];
+    }
+  });
 });
