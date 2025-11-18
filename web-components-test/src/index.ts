@@ -6,15 +6,15 @@ import "@carbon/web-components/es/components/ui-shell/index";
 import "@carbon/web-components/es/components/icon/index.js";
 
 // Import icons
-import Search16 from "@carbon/icons/es/search/16.js";
-import Notification16 from "@carbon/icons/es/notification/16.js";
-import Switcher16 from "@carbon/icons/es/switcher/16.js";
+import Search20 from "@carbon/icons/es/search/20.js";
+import Notification20 from "@carbon/icons/es/notification/20.js";
+import Switcher20 from "@carbon/icons/es/switcher/20.js";
 
 // Create icon registry
 const iconRegistry: Record<string, any> = {
-  search: Search16,
-  notification: Notification16,
-  switcher: Switcher16,
+  search: Search20,
+  notification: Notification20,
+  switcher: Switcher20,
 };
 
 // Function to process an icon element
