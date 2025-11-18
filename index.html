@@ -44,7 +44,11 @@
     function switchView(clickEvent) {
       const mainElement = document.querySelector('main');
       const switchButtons = document.getElementsByClassName('switch-button');
+      for (const button of switchButtons) {
+        button.classList.remove('selected');
+      };
 
+      clickEvent.target.classList.add('selected');
       mainElement.className = clickEvent.target.id.substring(0, clickEvent.target.id.length - 7);
     }
 
