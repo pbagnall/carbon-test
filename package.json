@@ -1,0 +1,31 @@
+{
+  "name": "carbon-test",
+  "version": "0.1.0",
+  "description": "A test if IBM Carbon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build-wc && npm run build-react",
+    "build-wc": "npm run build --workspace=web-components-test",
+    "build-react": "npm run build --workspace=react-test",
+    "demo": "http-server -c-1 -o index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbagnall/carbon-test.git"
+  },
+  "author": "Peter Bagnall",
+  "license": "UNLICENCED",
+  "bugs": {
+    "url": "https://github.com/pbagnall/carbon-test/issues"
+  },
+  "homepage": "https://github.com/pbagnall/carbon-test#readme",
+  "workspaces": [
+    "web-components-test",
+    "react-test",
+    "angular-test"
+  ],
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

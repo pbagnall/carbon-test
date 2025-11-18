@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    button {
+      border-radius: 2px;
+      border: 1px solid #444444;
+      color: black
+    }
+
+    button.selected {
+      background-color: #111111;
+      color: white;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: 2px solid black;
+      display: none;
+    }
+
+    main.webcomponents iframe#webcomponents { display: block; }
+    main.react iframe#react { display: block; }
+    main.angular iframe#angular { display: block; }
+
+  </style>
+  <script>
+    function switchView(clickEvent) {
+      const mainElement = document.querySelector('main');
+      const switchButtons = document.getElementsByClassName('switch-button');
+
+      mainElement.className = clickEvent.target.id.substring(0, clickEvent.target.id.length - 7);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const switchButtons = document.getElementsByClassName('switch-button');
+      const mainElement = document.querySelector('main');
+
+      for (const button of switchButtons) {
+        button.addEventListener('click', switchView);
+      };
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>IBM Carbon implementation comparison
+    <button class='switch-button selected' id="webcomponents-button">Web components</button>
+    <button class='switch-button' id="react-button">React</button>
+    <button class='switch-button' id="angular-button">Angular</button>
+    </h1>
+  </header>
+  <main class="webcomponents">
+    <iframe id='webcomponents' src="/web-components-test/dist/index.html"></iframe>
+    <iframe id='react' src="/react-test/dist/index.html"></iframe>
+    <iframe id='angular' src="/angular-test/dist/index.html"></iframe>
+  </main>
+</body>
+</html>

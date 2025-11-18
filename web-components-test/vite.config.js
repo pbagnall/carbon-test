@@ -3,10 +3,11 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [],
+  base: "/web-components-test/dist",
   
   server: {
     port: 5174,
-    strictPort: true
+    strictPort: true,
   },
   css: {
     preprocessorOptions: {
