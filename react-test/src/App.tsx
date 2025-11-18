@@ -2,10 +2,10 @@ import { useState } from 'react'
 import {
   Button, Header, HeaderMenuButton, HeaderName, HeaderNavigation, HeaderMenuItem, HeaderMenu,
   HeaderGlobalBar, HeaderGlobalAction, SkipToContent, SideNav,
-  SideNavItems, HeaderSideNavItems, SideNavMenu, SideNavMenuItem, SideNavLink
+  SideNavItems, SideNavMenu, SideNavMenuItem, SideNavLink
 } from '@carbon/react';
-import { Notification, Fade, Search, Switcher } from '@carbon/icons-react';
-import './App.css'
+import { Notification, Search, Switcher } from '@carbon/icons-react';
+import './App.scss'
 
 
 function onClickSideNavExpand() {
@@ -28,17 +28,17 @@ function App() {
       <Header>
         <SkipToContent />
         <HeaderMenuButton aria-label={isSideNavExpanded ? 'Close menu' : 'Open menu'} onClick={onClickSideNavExpand} isActive={isSideNavExpanded} aria-expanded={isSideNavExpanded} />
-          <HeaderName href="#" prefix="IBM">
-            [Platform]
+          <HeaderName style={{width: "18rem"}} href="#" prefix="IBM">
+            Carbon React Test
           </HeaderName>
           <HeaderNavigation aria-label="IBM [Platform]">
-            <HeaderMenuItem href="#">Link 1</HeaderMenuItem>
-            <HeaderMenuItem href="#">Link 2</HeaderMenuItem>
-            <HeaderMenuItem href="#">Link 3</HeaderMenuItem>
-            <HeaderMenu aria-label="Link 4" menuLinkName="Link 4">
-              <HeaderMenuItem href="#one">Sub-link 1</HeaderMenuItem>
-              <HeaderMenuItem href="#two">Sub-link 2</HeaderMenuItem>
-              <HeaderMenuItem href="#three">Sub-link 3</HeaderMenuItem>
+            <HeaderMenuItem href="#file">File</HeaderMenuItem>
+            <HeaderMenuItem href="#edit">Edit</HeaderMenuItem>
+            <HeaderMenuItem href="#selection">Selection</HeaderMenuItem>
+            <HeaderMenu aria-label='View' menuLinkName='View'>
+              <HeaderMenuItem href="#everything">Everything</HeaderMenuItem>
+              <HeaderMenuItem href="#hide-some-things">Hide some things</HeaderMenuItem>
+              <HeaderMenuItem href="#hide-other-things">Hide other things</HeaderMenuItem>
             </HeaderMenu>
           </HeaderNavigation>
           <HeaderGlobalBar>
@@ -54,55 +54,14 @@ function App() {
           </HeaderGlobalBar>
           <SideNav aria-label="Side navigation" expanded={isSideNavExpanded} onSideNavBlur={onClickSideNavExpand} href="#main-content">
             <SideNavItems>
-              <HeaderSideNavItems hasDivider={true}>
-                <HeaderMenuItem href="#">Link 1</HeaderMenuItem>
-                <HeaderMenuItem href="#">Link 2</HeaderMenuItem>
-                <HeaderMenuItem href="#">Link 3</HeaderMenuItem>
-                <HeaderMenu aria-label="Link 4" menuLinkName="Link 4">
-                  <HeaderMenuItem href="#">Sub-link 1</HeaderMenuItem>
-                  <HeaderMenuItem href="#">Sub-link 2</HeaderMenuItem>
-                  <HeaderMenuItem href="#">Sub-link 3</HeaderMenuItem>
-                </HeaderMenu>
-              </HeaderSideNavItems>
-              <SideNavMenu renderIcon={Fade} title="Category title" tabIndex={0}>
-                <SideNavMenuItem href="https://www.carbondesignsystem.com/">
-                  Link 5
-                </SideNavMenuItem>
-                <SideNavMenuItem href="https://www.carbondesignsystem.com/">
-                  Link 6
-                </SideNavMenuItem>
-                <SideNavMenuItem href="https://www.carbondesignsystem.com/">
-                  Link 7
-                </SideNavMenuItem>
-              </SideNavMenu>
-              <SideNavMenu renderIcon={Fade} title="Category title" tabIndex={0}>
-                <SideNavMenuItem href="https://www.carbondesignsystem.com/">
-                  Link 8
-                </SideNavMenuItem>
-                <SideNavMenuItem href="https://www.carbondesignsystem.com/">
-                  Link 9
-                </SideNavMenuItem>
-                <SideNavMenuItem href="https://www.carbondesignsystem.com/">
-                  Link 10
-                </SideNavMenuItem>
-              </SideNavMenu>
-              <SideNavMenu renderIcon={Fade} title="Category title" isActive={true} tabIndex={0}>
-                <SideNavMenuItem href="https://www.carbondesignsystem.com/">
-                  Link 11
-                </SideNavMenuItem>
-                <SideNavMenuItem aria-current="page" href="https://www.carbondesignsystem.com/">
-                  Link 12
-                </SideNavMenuItem>
-                <SideNavMenuItem href="https://www.carbondesignsystem.com/">
-                  Link 13
-                </SideNavMenuItem>
-              </SideNavMenu>
-              <SideNavLink renderIcon={Fade} href="https://www.carbondesignsystem.com/">
-                Link
-              </SideNavLink>
-              <SideNavLink renderIcon={Fade} href="https://www.carbondesignsystem.com/">
-                Link
-              </SideNavLink>
+                <SideNavLink href="#file">File</SideNavLink>
+                <SideNavLink href="#edit">Edit</SideNavLink>
+                <SideNavLink href="#view">Selection</SideNavLink>
+                <SideNavMenu aria-label="View" title="View">
+                  <SideNavMenuItem href="#everything">Everything</SideNavMenuItem>
+                  <SideNavMenuItem href="#hide-some-things">Hide some things</SideNavMenuItem>
+                  <SideNavMenuItem href="#hide-other-things">Hide other things</SideNavMenuItem>
+                </SideNavMenu>
             </SideNavItems>
           </SideNav>
       </Header>

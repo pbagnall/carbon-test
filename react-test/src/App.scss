@@ -1,4 +1,11 @@
+@use '@carbon/react';
+
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/themes';
+
 #root {
+  @include theme(themes.$g10);
+
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
