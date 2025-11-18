@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carbon Web Components - Header with Side Nav</title>
+  <link rel="stylesheet" href="https://1.www.s81c.com/common/carbon/plex/sans.css" />
+  <script type="module" src="/src/index.ts"></script>
+</head>
+<body class="app">
+  <style>
+    cds-header ~ cds-side-nav {
+      block-size:calc(100% - 3rem);
+      margin-block-start:3rem
+    }
+
+    .cds-ce-demo-devenv--container {
+      transition:margin-left .11s cubic-bezier(.2,0,1,.9);
+      will-change:margin-left
+    }
+    
+    @media (min-width: 66rem){
+      .cds-ce-demo-devenv--container {
+        margin-inline-start:16rem
+      }
+    }
+  </style>
+  <header>
+    <cds-header aria-label="IBM Platform Name">
+      <cds-header-menu-button
+        button-label-active="Close menu"
+        button-label-inactive="Open menu">
+      </cds-header-menu-button>
+      <cds-header-name href="./" prefix="IBM">Carbon Web Component Test</cds-header-name>
+      <cds-header-nav menu-bar-label="Carbon Tutorial">
+        <cds-header-nav-item href="#file">File</cds-header-nav-item>
+        <cds-header-nav-item href="#edit">Edit</cds-header-nav-item>
+        <cds-header-nav-item href="#selection">Selection</cds-header-nav-item>
+        <cds-header-menu menu-label="View" role='listitem' trigger-content='View'>
+          <cds-header-menu-item href="#everything">Everything</cds-header-menu-item>
+          <cds-header-menu-item href="#hide-some-things">Hide some things</cds-header-menu-item>
+          <cds-header-menu-item href="#hide-other-things">Hide other things</cds-header-menu-item>
+        </cds-header-menu>
+      </cds-header-nav>
+      <cds-side-nav
+        is-not-persistent 
+        aria-label="Side navigation"
+        collapse-mode="responsive"
+        role="navigation"
+        expanded>
+        <cds-side-nav-items>
+          <cds-side-nav-link href="#file">File</cds-side-nav-link>
+          <cds-side-nav-link href="#edit">Edit</cds-side-nav-link>
+          <cds-side-nav-link href="#selection">Selection</cds-side-nav-link>
+          <cds-side-nav-menu aria-label="View" title="View">
+            <cds-side-nav-menu-item href="#everything">Everything</cds-side-nav-menu-item>
+            <cds-side-nav-menu-item href="#hide-some-things">Hide some things</cds-side-nav-menu-item>
+            <cds-side-nav-menu-item href="#hide-other-things">Hide other things</cds-side-nav-menu-item>
+        </cds-side-nav-items>
+      </cds-side-nav>
+      <div class="cds--header__global">
+        <cds-header-global-action
+          aria-label="Search"
+          panel-id="search-panel">
+          <cds-icon icon='search' slot="icon"></cds-icon>
+        </cds-header-global-action>
+        <cds-header-global-action
+          aria-label="Notifications"
+          panel-id="notification-panel">
+          <cds-icon slot="icon"></cds-icon>
+        </cds-header-global-action>
+        <cds-header-global-action
+          aria-label="App Switcher"
+          panel-id="app-switcher-panel">
+          <cds-icon icon='switcher' slot="icon"></cds-icon>
+        </cds-header-global-action>
+</div>
+    </cds-header>
+  </header>
+  <main class="main">
+    <cds-button class="button">Click me</cds-button>
+  </main>
+</body>
+</html>

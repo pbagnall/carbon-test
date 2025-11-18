@@ -1,0 +1,23 @@
+{
+  "name": "web-components-test",
+  "version": "0.1.0",
+  "description": "Testing IBM Carbon web components, including themeing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "author": "Peter Bagnall",
+  "license": "UNLICENCED",
+  "dependencies": {
+    "@carbon/icons": "^11.70.0",
+    "@carbon/web-components": "^2.42.0"
+  },
+  "devDependencies": {
+    "sass": "^1.94.0",
+    "vite": "^7.2.2"
+  }
+}

@@ -1,0 +1,29 @@
+@use '@carbon/styles/scss/reset';
+@use '@carbon/styles/scss/spacing' as *;
+
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/themes';
+
+:root {
+  @include theme(themes.$g10);
+}
+
+.g10 {
+  @include theme(themes.$g10);
+}
+
+.g100 {
+  @include theme(themes.$g100);
+}
+
+.app {
+  display: grid;
+  grid-template-rows: $spacing-09 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+cds-header-name {
+  width: 18rem;
+}
+
