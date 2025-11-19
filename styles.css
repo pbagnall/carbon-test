@@ -1,0 +1,82 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 1rem);
+  margin: 0.5rem;
+}
+
+h1 {
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.indicator-message {
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+.indicator-message.hidden {
+  display: none;
+}
+
+#blink-indicator {
+  color: #0f62fe;
+}
+
+#blink-indicator::before {
+  content: "👁️ ";
+}
+
+#help-message {
+  color: #666;
+}
+
+#help-message::before {
+  content: "💡 ";
+}
+
+button {
+  border-radius: 2px;
+  border: 1px solid #444444;
+  color: black;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+button.selected {
+  background-color: #111111;
+  color: white;
+  box-shadow: 0 0 0 2px #0f62fe;
+}
+
+button.selected:hover {
+  background-color: #444444;
+}
+
+button.active-view {
+  box-shadow: 0 0 0 3px #ff6b00, 0 0 0 2px #0f62fe;
+}
+
+iframe {
+  width: stretch;
+  height: stretch;
+  border: 2px solid black;
+  display: none;
+}
+
+main {
+  flex-grow: 1;
+}
+
+main.webcomponents #webcomponents,
+main.react #react,
+main.angular #angular {
+  display: block;
+}
