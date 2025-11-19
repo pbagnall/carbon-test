@@ -8,14 +8,16 @@
     "build": "run-p build:*",
     "build:wc": "npm run build --workspace=web-components-test",
     "build:react": "npm run build --workspace=react-test",
+    "build:angular": "npm run build --workspace=angular-test",
 
     "demo": "npm run build && npm run demo-serve",
     "demo-serve": "http-server -c-1 -o index.html",
 
     "dev": "run-p dev:*",
-    "dev:compare": "http-server -c-1 -o dev.html",
+    "dev:compare": "http-server -c-1 -o index.html",
     "dev:wc": "npm run dev --workspace=web-components-test",
-    "dev:react": "npm run dev --workspace=react-test"
+    "dev:react": "npm run dev --workspace=react-test",
+    "dev:angular": "npm run dev --workspace=angular-test"
   },
   "repository": {
     "type": "git",

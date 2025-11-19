@@ -1,0 +1,21 @@
+@use '@carbon/styles/scss/spacing' as *;
+
+.app {
+  display: grid;
+  grid-template-rows: $spacing-09 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+cds-header ~ cds-side-nav {
+  block-size: calc(100% - 3rem);
+  margin-block-start: 3rem;
+}
+
+cds-header-name {
+  width: 18rem;
+}
+
+.main {
+  padding: 1rem;
+}
