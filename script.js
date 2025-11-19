@@ -2,6 +2,24 @@ let selectedViews = new Set(['webcomponents']); // Track multiple selections
 let blinkInterval = null; // For the blink comparator
 let currentBlinkIndex = 0;
 
+// Cookie utility functions
+function setCookie(name, value, days = 7) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
 function getViewNameFromButtonId(buttonId) {
   return buttonId.substring(0, buttonId.length - 7);
 }
@@ -115,6 +133,9 @@ function switchView(clickEvent) {
     selectedViews.add(viewName);
   }
 
+  // Save selected views to cookie
+  setCookie('selectedViews', JSON.stringify(Array.from(selectedViews)));
+
   updateButtonStates();
   updateVisibleView();
 }
@@ -126,7 +147,21 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', switchView);
   }
 
-  // Initialize with webcomponents selected
+  // Restore selected views from cookie
+  const savedViews = getCookie('selectedViews');
+  if (savedViews) {
+    try {
+      const parsedViews = JSON.parse(savedViews);
+      if (Array.isArray(parsedViews) && parsedViews.length > 0) {
+        selectedViews = new Set(parsedViews);
+      }
+    } catch (e) {
+      console.warn('Failed to parse saved views from cookie:', e);
+      // Keep default selectedViews if parsing fails
+    }
+  }
+
+  // Initialize UI with selected views
   updateButtonStates();
   updateVisibleView();
 });
