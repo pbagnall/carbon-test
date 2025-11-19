@@ -1,6 +1,7 @@
 let selectedViews = new Set(['webcomponents']); // Track multiple selections
 let blinkInterval = null; // For the blink comparator
 let currentBlinkIndex = 0;
+let currentWidth = 'full'; // Track current iframe width setting
 
 // Cookie utility functions
 function setCookie(name, value, days = 7) {
@@ -22,6 +23,16 @@ function getCookie(name) {
 
 function getViewNameFromButtonId(buttonId) {
   return buttonId.substring(0, buttonId.length - 7);
+}
+
+function updateIframeWidth() {
+  const mainElement = document.querySelector('main');
+  
+  if (currentWidth === 'full') {
+    mainElement.style.removeProperty('--iframe-width');
+  } else {
+    mainElement.style.setProperty('--iframe-width', currentWidth + 'px');
+  }
 }
 
 function updateVisibleView() {
@@ -46,6 +57,9 @@ function updateVisibleView() {
     stopBlinkComparator(); // Stop existing comparator first
     startBlinkComparator(selectedArray);
   }
+  
+  // Apply current width setting
+  updateIframeWidth();
 }
 
 function startBlinkComparator(views) {
@@ -140,12 +154,25 @@ function switchView(clickEvent) {
   updateVisibleView();
 }
 
+function changeWidth(event) {
+  currentWidth = event.target.value;
+  
+  // Save width setting to cookie
+  setCookie('iframeWidth', currentWidth);
+  
+  updateIframeWidth();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const switchButtons = document.getElementsByClassName('switch-button');
+  const widthSelector = document.getElementById('width-selector');
 
+  // Add event listeners
   for (const button of switchButtons) {
     button.addEventListener('click', switchView);
   }
+  
+  widthSelector.addEventListener('change', changeWidth);
 
   // Restore selected views from cookie
   const savedViews = getCookie('selectedViews');
@@ -161,7 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Initialize UI with selected views
+  // Restore width setting from cookie
+  const savedWidth = getCookie('iframeWidth');
+  if (savedWidth) {
+    currentWidth = savedWidth;
+    widthSelector.value = savedWidth;
+  }
+
+  // Initialize UI with selected views and width
   updateButtonStates();
   updateVisibleView();
 });

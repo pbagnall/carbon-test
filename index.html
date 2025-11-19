@@ -8,12 +8,27 @@
 <body>
   <header>
     <h1>IBM Carbon implementation comparison</h1>
-    <div>
-      <button class='switch-button selected' id="webcomponents-button">Web components</button>
-      <button class='switch-button' id="react-button">React</button>
-      <button class='switch-button' id="angular-button">Angular</button>
-      <span class="indicator-message hidden" id="blink-indicator">Blink Comparator Active</span>
-      <span class="indicator-message" id="help-message">Shift+click to compare</span>
+    <div class="controls-row">
+      <div class="view-controls">
+        <button class='switch-button selected' id="webcomponents-button">Web components</button>
+        <button class='switch-button' id="react-button">React</button>
+        <button class='switch-button' id="angular-button">Angular</button>
+        <span class="indicator-message hidden" id="blink-indicator">Blink Comparator Active</span>
+        <span class="indicator-message" id="help-message">Shift+click to compare</span>
+      </div>
+      <div class="width-controls">
+        <label for="width-selector">Width:</label>
+        <select id="width-selector">
+          <option value="full">Full Width</option>
+          <option value="1920">1920px (Desktop)</option>
+          <option value="1440">1440px (Large Laptop)</option>
+          <option value="1024">1024px (Tablet Landscape)</option>
+          <option value="768">768px (Tablet Portrait)</option>
+          <option value="480">480px (Mobile Large)</option>
+          <option value="375">375px (Mobile Medium)</option>
+          <option value="320">320px (Mobile Small)</option>
+        </select>
+      </div>
     </div>
   </header>
   <main class="webcomponents">
