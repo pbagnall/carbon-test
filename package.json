@@ -10,10 +10,7 @@
     "build:react": "npm run build --workspace=react-test",
 
     "demo": "npm run build && npm run demo-serve",
-    "demo-serve": "run-p demo:*",
-    "demo:compare": "http-server -c-1 -o index.html",
-    "demo:wc": "npm run demo --workspace=web-components-test",
-    "demo:react": "npm run demo --workspace=react-test",
+    "demo-serve": "http-server -c-1 -o index.html",
 
     "dev": "run-p dev:*",
     "dev:compare": "http-server -c-1 -o dev.html",

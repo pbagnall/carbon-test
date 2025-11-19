@@ -7,13 +7,14 @@
 </head>
 <body>
   <header>
-    <h1>IBM Carbon implementation comparison
-    <button class='switch-button selected' id="webcomponents-button">Web components</button>
-    <button class='switch-button' id="react-button">React</button>
-    <button class='switch-button' id="angular-button">Angular</button>
-    <span class="indicator-message hidden" id="blink-indicator">Blink Comparator Active (500ms intervals)</span>
-    <span class="indicator-message" id="help-message">Shift+click to compare multiple implementations</span>
-    </h1>
+    <h1>IBM Carbon implementation comparison</h1>
+    <div>
+      <button class='switch-button selected' id="webcomponents-button">Web components</button>
+      <button class='switch-button' id="react-button">React</button>
+      <button class='switch-button' id="angular-button">Angular</button>
+      <span class="indicator-message hidden" id="blink-indicator">Blink Comparator Active</span>
+      <span class="indicator-message" id="help-message">Shift+click to compare</span>
+    </div>
   </header>
   <main class="webcomponents">
     <iframe id='webcomponents' src="/web-components-test/dist/index.html"></iframe>
