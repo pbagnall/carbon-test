@@ -8,14 +8,6 @@
   @include theme(themes.$g10);
 }
 
-.g10 {
-  @include theme(themes.$g10);
-}
-
-.g100 {
-  @include theme(themes.$g100);
-}
-
 .app {
   display: grid;
   grid-template-rows: $spacing-09 1fr;
