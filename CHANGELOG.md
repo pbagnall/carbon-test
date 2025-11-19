@@ -103,6 +103,17 @@ const iconRegistry: Record<string, any> = {
 };
 ```
 
+#### State Persistence System
+- **Cookie-based Storage**: User selections are automatically saved to cookies and restored on page load
+- **Cross-session Persistence**: Selected implementations remain active across browser sessions
+- **Fallback Handling**: Graceful degradation when cookie parsing fails
+
+#### Code Organization and Architecture
+- **Separated Concerns**: Extracted CSS and JavaScript into separate files (`styles.css`, `script.js`)
+- **Clean HTML Structure**: Simplified main HTML file with external dependencies
+- **Modular Approach**: Better maintainability with separated presentation and logic
+- **Performance Optimization**: Removed unnecessary cookie updates during blink comparator operation
+
 #### Enhanced Component Integration
 ```javascript
 // Component-level icon processing
@@ -110,6 +121,22 @@ originalCDSIcon.prototype.connectedCallback = function() {
   originalConnectedCallback?.call(this);
   processIconElement(this);
 };
+```
+
+#### Cookie-based State Management
+```javascript
+// Persistent state across sessions
+function setCookie(name, value, days = 7) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+}
+
+// Restore selections on page load
+const savedViews = getCookie('selectedViews');
+if (savedViews) {
+  selectedViews = new Set(JSON.parse(savedViews));
+}
 ```
 
 #### Simplified UI State Management
@@ -142,19 +169,49 @@ button.active-view {
 }
 ```
 
+### Technical Refactoring
+
+#### Code Organization (Commits: f19d20a, 2a8a904)
+- **File Separation**: Extracted CSS and JavaScript from `index.html` into dedicated files
+- **Clean Architecture**: Improved maintainability with separated concerns
+- **External Dependencies**: CSS (`styles.css`) and JavaScript (`script.js`) now loaded as external resources
+- **Simplified HTML**: Main HTML file focused purely on structure
+
+#### State Management Optimization (Commit: 5f85360)
+- **Cookie Implementation**: Added persistent storage for user selection preferences
+- **Session Continuity**: User selections automatically restored on page refresh/reload
+- **Performance Improvement**: Eliminated unnecessary DOM updates during state persistence
+
+#### Interface Refinements (Commits: 375484e, bb3db83)
+- **CSS Cleanup**: Removed redundant styles and improved maintainability
+- **UI Polish**: Enhanced visual hierarchy and user experience
+- **Code Tidying**: General code cleanup and organization improvements
+
 ### Files Modified
-- `index.html` - Main comparison interface with multi-selection and blink comparator
+- `index.html` - Main comparison interface with multi-selection and blink comparator (refactored with external dependencies)
+- `styles.css` - **NEW**: Extracted CSS styles with enhanced button states and responsive design
+- `script.js` - **NEW**: Extracted JavaScript logic with cookie-based state persistence
 - `react-test/vite.config.ts` - Added SCSS support configuration
 - `web-components-test/src/index.ts` - Enhanced icon system implementation
 - `web-components-test/src/carbon-icons.d.ts` - TypeScript declarations for Carbon icons
 - `web-components-test/index.html` - Updated to use declarative icon syntax
 
+### Recent Improvements Summary
+
+#### Latest Development Features
+1. **Complete Code Separation**: Clean architecture with external CSS/JS files
+2. **Persistent User Preferences**: Cookie-based state management for seamless experience
+3. **Optimized Performance**: Reduced unnecessary DOM updates and improved efficiency
+4. **Enhanced Maintainability**: Better organized codebase with separated concerns
+5. **Production Ready**: Stable, tested implementation ready for deployment
+
 ### Usage Examples
 
-#### Multi-Selection
-- **Single view**: Click any implementation button
-- **Multiple comparison**: Shift+click additional implementations
+#### Multi-Selection with Persistence
+- **Single view**: Click any implementation button (selection saved automatically)
+- **Multiple comparison**: Shift+click additional implementations (all selections persisted)
 - **Return to single**: Regular click to stop comparison mode
+- **Session Continuity**: Selections restored automatically on page reload
 
 #### Declarative Icons
 ```html
@@ -165,6 +222,17 @@ button.active-view {
 <cds-icon icon="search" slot="icon"></cds-icon>
 <cds-icon icon="notification" slot="icon"></cds-icon>
 <cds-icon icon="switcher" slot="icon"></cds-icon>
+```
+
+#### File Structure (Post-Refactoring)
+```
+carbon-test/
+├── index.html          # Main interface (clean structure)
+├── styles.css          # All CSS styles and responsive design
+├── script.js           # JavaScript logic and state management
+├── react-test/         # React implementation
+├── web-components-test/ # Web Components implementation
+└── angular-test/       # Angular implementation (planned)
 ```
 
 ---
