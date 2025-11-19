@@ -8,10 +8,6 @@ import { Notification, Search, Switcher } from '@carbon/icons-react';
 import './App.scss'
 
 
-function onClickSideNavExpand() {
-
-}
-
 function action(actionName: string): () => void {
   console.log(actionName);
   return () => {};
@@ -19,8 +15,15 @@ function action(actionName: string): () => void {
 
 function App() {
   const [count, setCount] = useState(0)
+  const [isSideNavExpanded, setIsSideNavExpanded] = useState(false); // Default to closed
 
-  const isSideNavExpanded = true;
+  function onClickSideNavExpand() {
+    setIsSideNavExpanded(!isSideNavExpanded);
+  }
+
+  function onSideNavBlur() {
+    setIsSideNavExpanded(false);
+  }
   
 
   return (
@@ -52,7 +55,7 @@ function App() {
               <Switcher size={20} />
             </HeaderGlobalAction>
           </HeaderGlobalBar>
-          <SideNav aria-label="Side navigation" expanded={isSideNavExpanded} onSideNavBlur={onClickSideNavExpand} href="#main-content">
+          <SideNav aria-label="Side navigation" expanded={isSideNavExpanded} onSideNavBlur={onSideNavBlur} href="#main-content">
             <SideNavItems>
                 <SideNavLink href="#file">File</SideNavLink>
                 <SideNavLink href="#edit">Edit</SideNavLink>

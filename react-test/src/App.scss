@@ -10,3 +10,25 @@
 .card {
   padding: 2em;
 }
+
+// Hide SideNav and HeaderMenuButton on desktop (screens wider than 1024px)
+@media (min-width: 1025px) {
+  .cds--header__menu-toggle {
+    display: none !important;
+  }
+  
+  .cds--side-nav {
+    display: none !important;
+  }
+}
+
+// Show SideNav and HeaderMenuButton only on tablet/mobile (1024px and smaller)
+@media (max-width: 1024px) {
+  .cds--header__menu-toggle {
+    display: flex !important;
+  }
+  
+  .cds--side-nav {
+    display: block !important;
+  }
+}
