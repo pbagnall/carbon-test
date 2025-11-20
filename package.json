@@ -2,6 +2,7 @@
   "name": "carbon-test",
   "version": "0.1.0",
   "description": "A test if IBM Carbon",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,6 +13,13 @@
 
     "demo": "npm run build && npm run demo-serve",
     "demo-serve": "http-server -c-1 -o index.html",
+
+    "gh-pages:prepare": "node scripts/gh-pages-prepare.js",
+    "gh-pages:clean": "node scripts/gh-pages-clean.js",
+    "gh-pages:copy": "node scripts/gh-pages-copy.js", 
+    "gh-pages:fix-paths": "node scripts/gh-pages-fix-paths.js",
+    "publish": "npm run build && npm run gh-pages:prepare && echo 'Files prepared in gh-pages/ directory. Push to main branch to deploy to GitHub Pages.'",
+    "pages:local": "http-server gh-pages -c-1 -o index.html",
 
     "dev": "run-p dev:*",
     "dev:compare": "http-server -c-1 -o index.html",
@@ -28,7 +36,7 @@
   "bugs": {
     "url": "https://github.com/pbagnall/carbon-test/issues"
   },
-  "homepage": "https://github.com/pbagnall/carbon-test#readme",
+  "homepage": "https://pbagnall.github.io/carbon-test/",
   "workspaces": [
     "web-components-test",
     "react-test",
