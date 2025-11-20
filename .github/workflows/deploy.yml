@@ -39,6 +39,20 @@ jobs:
         rm -rf angular-test/package-lock.json
         rm -rf angular-test/node_modules
 
+    - name: Install rollup native dependencies for web-components
+      run: |
+        cd web-components-test
+        npm install --save-dev @rollup/rollup-linux-x64-gnu
+        npm install rollup@latest vite@latest --save-dev
+        cd ..
+
+    - name: Install rollup native dependencies for angular
+      run: |
+        cd angular-test
+        npm install --save-dev @rollup/rollup-linux-x64-gnu
+        npm install rollup@latest vite@latest --save-dev
+        cd ..
+
     - name: Install dependencies
       run: npm ci
       
