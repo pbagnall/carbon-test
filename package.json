@@ -1,7 +1,7 @@
 {
   "name": "carbon-test",
   "version": "0.1.0",
-  "description": "A test if IBM Carbon",
+  "description": "A test of IBM Carbon",
   "type": "module",
   "main": "index.js",
   "scripts": {
